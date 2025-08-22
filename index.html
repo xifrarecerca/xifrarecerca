@@ -324,7 +324,7 @@
     &copy; 2025 XifraRecerca · Fet per Marc San José
   </div>
   <script>
-    // ========== Internacionalització ==========
+    // ========== Internaconnexió ==========
     const texts = {
       ca: {
         welcome: 'Benvingut a XifraRecerca, el teu xifrador i desxifrador de confiança,<br>desenvolupat per Marc San José Casals com a part del treball de recerca de batxillerat.<br>Per qualsevol dubte o suggerència, no dubtis a contactar-me a msanjosecasals@inspineda.com',
@@ -649,8 +649,9 @@ def desxifrar_text(xifrat_blocs, clau_priv):
     carregarPyodide();
 
     function textValid(text) {
-      return /^[\u0000-\u00FF\u0100-\u017F\u0180-\u024F\s\.,;:?!¡¿'"()\-_\[\]{}\n\r]+$/.test(text);
-    }
+  // Allows any Unicode character, plus basic punctuation
+  return /^[\p{L}\p{N}\s\.,;:?!¡¿'"()\-_{}\[\]\n\r]+$/u.test(text);
+}
 
     // --------- Xifrar -----------
     document.getElementById('form-xifrar').onsubmit = async function(e) {
